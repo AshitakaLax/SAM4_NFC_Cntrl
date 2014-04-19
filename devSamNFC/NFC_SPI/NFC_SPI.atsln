@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Atmel Studio Solution File, Format Version 11.00
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "NFC_SPI", "NFC_SPI\NFC_SPI.cproj", "{438ED6E7-6489-4772-9FA0-8CC215BD43AB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|ARM = Debug|ARM
+		Release|ARM = Release|ARM
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{438ED6E7-6489-4772-9FA0-8CC215BD43AB}.Debug|ARM.ActiveCfg = Debug|ARM
+		{438ED6E7-6489-4772-9FA0-8CC215BD43AB}.Debug|ARM.Build.0 = Debug|ARM
+		{438ED6E7-6489-4772-9FA0-8CC215BD43AB}.Release|ARM.ActiveCfg = Release|ARM
+		{438ED6E7-6489-4772-9FA0-8CC215BD43AB}.Release|ARM.Build.0 = Release|ARM
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
