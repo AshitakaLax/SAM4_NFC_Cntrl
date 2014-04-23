@@ -7,8 +7,8 @@
 
 #include "pn532Cntrl.h"
 #include "stdio_serial.h"
+#include "devSpiCntrl.h"
 #include <string.h>
-
 
 uint8_t pn532ack[] = {
   0x00, 0x00, 0xFF, 0x00, 0xFF, 0x00};
@@ -17,7 +17,6 @@ uint8_t pn532response_firmwarevers[] = {
 
 #define PN532_PACK_BUFF_SIZE 64
 uint8_t pn532_packetbuffer[PN532_PACK_BUFF_SIZE];
-
 
 /**************
 * private prototypes
@@ -32,16 +31,17 @@ uint8_t pn532_packetbuffer[PN532_PACK_BUFF_SIZE];
  void read(uint8_t* buff, uint8_t n);//reads n bytes, and puts them in buff
  void writeCommand(uint8_t* cmd, uint8_t cmdlen);
 
-
 /**************
 * Public items
 **************/
 
 // Initialize the PN532 chip
 // currently the cs does nothing
-void initPN532(uint8_t cs)
+void initPN532(void)
 {
-	//todo set the CS to be an output and high
+	//configured with the spi interface
+	spi_master_initialize();//initialize the spi interface
+	
 }
 
 void begin(void)
@@ -54,6 +54,7 @@ void begin(void)
 	//CS to Low
 	//wait for it
 	//sync up with the board with a dummy response
+	pn532_packetbuffer[0] = PN532_FIRMWAREVERSION;
 	sendCommandCheckAck(pn532_packetbuffer, 1);
 }
 
@@ -503,13 +504,14 @@ bool sendCommandCheckAck(uint8_t *cmd, uint8_t cmd_len)
  void write(uint8_t _data)
  {
 	 //todo write data accross the spi interface
+	devSpiWrite(_data);	 
  }
 
 /*Function:Receive a uint8_t from PN532 through the SPI interface */
  uint8_t readByte(void)
  {
 	 //todo read Byte from the spi interface
-	 uint8_t data_ = 0;//pn532_SPI.transfer(0);
+	 uint8_t data_ = devSpiRead();//pn532_SPI.transfer(0);
 	 return data_;
  }
 

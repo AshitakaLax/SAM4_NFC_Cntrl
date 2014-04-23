@@ -62,12 +62,12 @@
 
 
 
-void initPN532(uint8_t cs);
+void initPN532(void);
 
 void begin(void);
 
 bool SAMConfig(void);
-
+	
 uint32_t getFirmwareVersion(void);
 
 uint32_t readPassiveTargetID(uint8_t cardbaudrate);
